@@ -114,7 +114,9 @@ ros2 node info relay
 ## 8: Deliverables and Submission
 In addition to the three deliverables described in this document, fill in the answers to the questions listed in **`SUBMISSION.md`**.
 
-* Breanna, please decide what you would like to do here instead*
+_Breanna, please decide what you would like to do here instead of GitHub Classroom_
+
+
 We'll be using Github classroom throughout the semester to manage submissions for lab assignments. After you're finished, directly commit and push to the repo Github classroom created for you.
 
 ## 9: Grading Rubric
