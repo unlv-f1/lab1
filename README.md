@@ -36,13 +36,24 @@ Move on to *Section 3* once you're done.
 
 If you can't have Ubuntu installed natively, install Docker on your system following the instructions here: [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/). The documentation of Docker can be found [here](https://docs.docker.com/reference/).
 
+Collect your user id and group id with the `id` command by:
+```bash
+id -u
+3000 # UID
+id -g
+4000 # GID
+```
+The UID and GID are used when creating the docker container.
+
+
 Next, start a container with a bind mount to your workspace directory on your host system inside this repo by:
 
 ```bash
-docker run -it -v <absolute_path_to_this_repo>/lab1_ws/src/:/lab1_ws/src/ --name f1tenth_lab1 ros:foxy
+docker run -it -v <absolute_path_to_this_repo>/lab1_ws/src/:/lab1_ws/src/ \
+    --name f1tenth_lab1 --user "<UID>:<GID>" ros:foxy
 ```
 
-This will create a workspace directory on the host at `<absolute_path_to_this_repo>/lab1_ws/src`. It'll create the container based on the official ROS 2 Foxy image, and give the container a name `f1tenth_lab1`. You'll then have access to a terminal inside the container.
+This will create a workspace directory on the host at `<absolute_path_to_this_repo>/lab1_ws/src`. Note, the "<UID>:<GID>" must be replaced with the actual numbers e.g. "3000:4000" for a UID of 3000 and GID of 4000. It'll create the container based on the official ROS 2 Foxy image, and give the container a name `f1tenth_lab1`. You'll then have access to a terminal inside the container.
 
 `tmux` is recommended when you're working inside a container. It could be installed in the container via: `apt update && apt install tmux`. `tmux` allows you to have multiple `bash` session in the same terminal window. This will be very convenient working inside containers. A quick reference on how to use tmux can be found [here](https://www.redhat.com/sysadmin/introduction-tmux-linux). You can start a session with `tmux`. Then you can call different `tmux` commands by pressing `ctrl+B` first and then the corresponding key. For example, to add a new window, press `ctrl+B` first and release and press `c` to create a new window. You can also move around with `ctrl+B` then `n` or `p`. 
 
@@ -103,6 +114,7 @@ ros2 node info relay
 ## 8: Deliverables and Submission
 In addition to the three deliverables described in this document, fill in the answers to the questions listed in **`SUBMISSION.md`**.
 
+* Breanna, please decide what you would like to do here instead*
 We'll be using Github classroom throughout the semester to manage submissions for lab assignments. After you're finished, directly commit and push to the repo Github classroom created for you.
 
 ## 9: Grading Rubric
@@ -110,3 +122,23 @@ We'll be using Github classroom throughout the semester to manage submissions fo
 - Correctly creating the nodes: **25** Points
 - Correctly creating the launch file: **25** Points
 - Written questions: **25** Points
+
+## Troubleshooting
+
+### Cannot use the container
+
+If there are problems entering or exiting the docker container, remove it:
+
+```bash
+docker container rm f1tenth_lab1
+```
+
+### Re-entering the container after exiting
+
+```bash
+docker start f1tenth_lab1
+docker attach f1tenth_lab1
+```
+
+### Exiting the container
+To exit the container hold down the control key and press the d key.
