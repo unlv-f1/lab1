@@ -23,9 +23,13 @@ for this lab in separate locations.
 
 	${HOME}/
 	  |
-	  +-- f1tenth_gym_ros/        -- The gym
+	  +-- sim_ws/
+	  |     |
+	  |     +-- src/
+	  |          |
+	  |          `-- f1tenth_gym_ros/        -- The gym
 	  |
-	  `-- lab1_ws/                -- This lab
+	  `-- lab1_ws/                           -- This lab
 	  
 Preparing the gym environment ensures the Docker resources and other
 tools are properly installed to prepare the first lab. Keep this
@@ -72,14 +76,14 @@ noVNC will be used to forward the display
    [https://github.com/f1tenth/f1tenth_gym_ros] 
    
     ```bash
-	cd ~
+	cd ~/sim_ws/src/
 	git clone https://github.com/f1tenth/f1tenth_gym_ros
 	```
 
 2. Start the docker composition
 
     ```bash
-	cd ~/f1tenth_gym_ros
+	cd ~/sim_ws/src/f1tenth_gym_ros
 	docker build -t f1tenth_gym_ros -f Dockerfile .
 	docker compose up
 	```
@@ -222,7 +226,7 @@ You should see two topics listed:
 If you need multiple terminals and you're inside a Docker container,
 use `tmux`. 
 
-# 4: Creating a Package
+# 6: Creating a Package
 
 *xxx-ct : Breanna, here we need more explicit and complete instructions*
 
@@ -235,7 +239,7 @@ we created. The package needs to meet these criteria:
 - Your package folder should be neat. You shouldn't have multiple
   'src' folders or unnecessary 'install' or 'build' folders. 
 
-# 5: Creating nodes with publishers and subscribers
+# 7: Creating nodes with publishers and subscribers
 
 **Deliverable 2**: create two nodes in the package we just
 created. You can use either `Python` or `C++` for these nodes. 
@@ -258,7 +262,7 @@ meet these criteria:
   via another `AckermannDriveStamped` message to a topic named
   `drive_relay`. 
 
-# 6: Creating a launch file and a parameter file
+# 8: Creating a launch file and a parameter file
 **Deliverable 3**: create a launch file `lab1_launch.py` that launches
 both of the nodes we've created. The `talker` accepts two parameters
 (`v` and `d`) which must be settable on the command line or in the
@@ -270,7 +274,7 @@ launch file.
 References to launch files may be found here:
 [https://docs.ros.org/en/foxy/Tutorials/Intermediate/Launch/Creating-Launch-Files.html] 
 
-# 7: ROS 2 commands
+# 9: ROS 2 commands
 
 After you've finished all the deliverables, launch the two nodes and
 test out these ROS 2 commands: 
@@ -284,7 +288,7 @@ ros2 node info talker
 ros2 node info relay
 ```
 
-## 8: Deliverables and Submission
+## 10: Deliverables and Submission
 
 Students will maintain a gitHub repository, cloning this repo and
 sharing collaboration rights with the TA. In addition to the three
@@ -300,7 +304,7 @@ If you need help, reference the following:
 
 
 
-## 9: Grading Rubric
+## 11: Grading Rubric
 
 - Correctly creating the package: **25** Points
 - Correctly creating the nodes: **25** Points
