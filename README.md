@@ -260,8 +260,15 @@ meet these criteria:
 
 # 6: Creating a launch file and a parameter file
 **Deliverable 3**: create a launch file `lab1_launch.py` that launches
-both of the nodes we've created. If you want, you could also set the
-parameter for the `talker` node in this launch file. 
+both of the nodes we've created. The `talker` accepts two parameters
+(`v` and `d`) which must be settable on the command line or in the
+launch file.
+
+
+    ```bash
+	Breanna, please add examples of starting the nodes including
+	setting the v and d parameters.
+	```
 
 References to launch files may be found here:
 [https://docs.ros.org/en/foxy/Tutorials/Intermediate/Launch/Creating-Launch-Files.html] 
