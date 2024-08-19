@@ -136,8 +136,7 @@ you chose. If successful, your browser tab should look similar to:
 	(sim-1) # 
 	```
 
-# 4. Creating a workspace and bind mounting it into the Docker
-container
+# 4. Creating a workspace and bind mounting it into the Docker container
 
 1. Begin by cloning this repository into `~/lab1_ws`
 2. Collect your user id and group id with the `id` command by:
