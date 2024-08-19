@@ -133,9 +133,8 @@ verification point.
 
 In your web browser tab for
 [http://localhost:8080/vnc.html](http://localhost:8080/vnc.html) an
-rviz window should pop up showing the simulation either on your host 
-system or in the browser window depending on the display forwarding
-you chose. If successful, your browser tab should look similar to:
+rviz window should pop up showing the simulation. If successful, your
+browser tab should look similar to: 
 
 ![f1tenth gym success](img/gym-success.png)
 
@@ -210,6 +209,7 @@ Now that we have the access to a ROS 2 environment, let's test out the
 basic ROS 2 commands. In f1tenth_lab1 container terminal, run: 
 
 ```bash
+# Within the container
 source /opt/ros/foxy/setup.bash
 ros2 topic list
 ```
@@ -224,7 +224,7 @@ use `tmux`.
 
 # 4: Creating a Package
 
-*xxx-ct : Breanna, here we need more explicit and complete instructions *
+*xxx-ct : Breanna, here we need more explicit and complete instructions*
 
 **Deliverable 1**: create a package named `lab1_pkg` in the workspace
 we created. The package needs to meet these criteria: 
