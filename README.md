@@ -18,6 +18,19 @@ support the greatest number of students, but it is highly recommended
 that students pursue a native installation from the instructions found
 [here](https://github.com/f1tenth/f1tenth_gym_ros). 
 
+These instructions will install the F1TENTH Gym and create a workspace
+for this lab in separate locations.
+
+	${HOME}/
+	  |
+	  +-- f1tenth_gym_ros/        -- The gym
+	  |
+	  `-- lab1_ws/                -- This lab
+	  
+Preparing the gym environment ensures the Docker resources and other
+tools are properly installed to prepare the first lab. Keep this
+layout in mind while working on the assignment.
+
 ## 1. Overview
 
 The goal of this lab is to get you familiar with the ROS 2
@@ -166,7 +179,7 @@ you chose. If successful, your browser tab should look similar to:
 
     ```bash
 	cd /lab1_ws/src
-	chown -R 3000:3000 *
+	chown -R 3000:4000 *        # UID:GID from Step 4.2
 	```
 
     *Note*, you will need to do this for every file created from
