@@ -264,11 +264,8 @@ both of the nodes we've created. The `talker` accepts two parameters
 (`v` and `d`) which must be settable on the command line or in the
 launch file.
 
-
-    ```bash
 	Breanna, please add examples of starting the nodes including
 	setting the v and d parameters.
-	```
 
 References to launch files may be found here:
 [https://docs.ros.org/en/foxy/Tutorials/Intermediate/Launch/Creating-Launch-Files.html] 
