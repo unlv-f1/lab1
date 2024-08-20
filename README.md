@@ -51,7 +51,7 @@ In this lab, it'll be helpful to read these tutorials if you're stuck:
 
 [https://roboticsbackend.com/category/ros2/](https://roboticsbackend.com/category/ros2/)
 
-## 2 Getting ready **(Docker)**
+## 2. Getting ready **(Docker)**
 
 Install Docker on your system following the instructions and
 references:
@@ -97,7 +97,7 @@ tab should look similar to to:
 ![noVNC success](img/novnc-success.png)
 
 
-# 3. Launching the Simulator
+## 3. Launching the Simulator
 
 <!-- *xxx-ct the relationship to launching the simulator and tmux is not -->
 <!-- clear. Specifically, whether tmux is used in inside or outside of -->
@@ -152,7 +152,7 @@ browser tab should look similar to:
 	(sim-1) # 
 	```
 
-# 4. Creating a workspace and bind mounting it into the Docker container
+## 4. Creating a workspace and bind mounting it into the Docker container
 
 1. Begin by cloning this repository into `~/lab1_ws`
 2. Collect your user id and group id with the `id` command by:
@@ -207,7 +207,7 @@ want to toggle the mouse mode on when you start a tmux bash session or
 change the shortcut keys), you can find a tutorial
 [here](https://www.hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/). 
 
-# 5: ROS 2 Basics
+## 5: ROS 2 Basics
 
 Now that we have the access to a ROS 2 environment, let's test out the
 basic ROS 2 commands. In f1tenth_lab1 container terminal, run: 
@@ -226,9 +226,8 @@ You should see two topics listed:
 If you need multiple terminals and you're inside a Docker container,
 use `tmux`. 
 
-# 6: Creating a Package
 
-*xxx-ct : Breanna, here we need more explicit and complete instructions*
+## 6. Creating a Package
 
 **Deliverable 1**: create a package named `lab1_pkg` in the workspace
 we created. The package needs to meet these criteria: 
@@ -239,7 +238,78 @@ we created. The package needs to meet these criteria:
 - Your package folder should be neat. You shouldn't have multiple
   'src' folders or unnecessary 'install' or 'build' folders. 
 
-# 7: Creating nodes with publishers and subscribers
+1. Create the ROS2 package
+```bash
+# In Container
+root@29629eeaf74a:/# source /opt/ros/foxy/setup.bash
+root@29629eeaf74a:/# source /lab1_ws/install/local_setup.bash
+root@29629eeaf74a:~# cd /lab1_ws/src/
+root@29629eeaf74a:/lab1_ws/src# ros2 pkg create --build-type ament_python lab1_pkg
+going to create a new package
+
+>>> SNIP <<<
+
+root@29629eeaf74a:/lab1_ws/src# cd ..
+# The following will build any package that is out of date
+root@29629eeaf74a:/lab1_ws# colcon build
+Starting >>> lab1_pkg
+Finished <<< lab1_pkg [0.76s]
+
+Summary: 1 package finished [0.89s]
+root@29629eeaf74a:/lab1_ws#
+```
+2. Verify the package has been properly created and included. The package will not be included until
+the workspace has been re-sourced.
+  
+```bash
+#In Container
+root@29629eeaf74a:/lab1_ws# ros2 pkg list | grep lab1
+root@29629eeaf74a:/lab1_ws#
+# Not listed
+root@29629eeaf74a:/lab1_ws# source install/local_setup.bash # re-source 
+root@29629eeaf74a:/lab1_ws# ros2 pkg list | grep lab1
+lab1_pkg
+# Now listed
+```
+3. Using an editor of your choice, edit the package.xml file located within the new package.
+Do this out of the container.
+```xml
+<license>TODO: License declaration</license>
+
+<!-- Begin new tags -->
+<depend>rclcpp</depend>
+<depend>rclpy</depend>
+<depend>ackermann_msgs</depend>
+<exec_depend>ros2launch</exec_depend>
+<!-- End new tags -->
+
+<test_depend>ament_copyright</test_depend>
+```
+4. Install the dependencies
+```bash
+#In Container
+root@29629eeaf74a:/lab1_ws# apt-get update
+
+>>> SNIP <<<
+
+Reading package lists... Done
+root@29629eeaf74a:/lab1_ws# rosdep install --from-paths src --ignore-src -y
+executing command [apt-get install -y ros-foxy-ackermann-msgs]
+
+>>> SNIP <<<
+
+#All required rosdeps installed successfully
+root@29629eeaf74a:/lab1_ws#
+```
+5. Add nodes in the package directory using your editor of choice.
+```bash
+#OUT of Container
+gordon@f1sim:~$ cd /home/gordon/ws/ros_ws/src/lab1_pkg/lab1_pkg
+gordon@f1sim:~/ws/ros_ws/src/lab1_pkg/lab1_pkg$ emacs -nw talker.py #vim/nano/emacs/etc.
+```
+
+
+## 7. Creating nodes with publishers and subscribers
 
 **Deliverable 2**: create two nodes in the package we just
 created. You can use either `Python` or `C++` for these nodes. 
@@ -262,19 +332,21 @@ meet these criteria:
   via another `AckermannDriveStamped` message to a topic named
   `drive_relay`. 
 
-# 8: Creating a launch file and a parameter file
+## 8. Creating a launch file and a parameter file
 **Deliverable 3**: create a launch file `lab1_launch.py` that launches
 both of the nodes we've created. The `talker` accepts two parameters
-(`v` and `d`) which must be settable on the command line or in the
-launch file.
+(`v` and `d`) which must be settable on the command line. Set the 
+default values in the launch file to 0.0.
 
-	Breanna, please add examples of starting the nodes including
-	setting the v and d parameters.
+Example instruction:
+```bash
+ros2 launch lab1_launch.py v:=2.0 d:=3.0 # sets v and d parameters 
+```
 
 References to launch files may be found here:
 [https://docs.ros.org/en/foxy/Tutorials/Intermediate/Launch/Creating-Launch-Files.html] 
 
-# 9: ROS 2 commands
+## 9. ROS 2 commands
 
 After you've finished all the deliverables, launch the two nodes and
 test out these ROS 2 commands: 
@@ -288,9 +360,9 @@ ros2 node info talker
 ros2 node info relay
 ```
 
-## 10: Deliverables and Submission
+## 10. Deliverables and Submission
 
-Students will maintain a gitHub repository, cloning this repo and
+Students will maintain a private gitHub repository, cloning this repo and
 sharing collaboration rights with the TA. In addition to the three
 deliverables described in this document, fill in the answers to the
 questions listed in **`SUBMISSION.md`**. Add is as a text file in your
@@ -304,7 +376,7 @@ If you need help, reference the following:
 
 
 
-## 11: Grading Rubric
+## 11. Grading Rubric
 
 - Correctly creating the package: **25** Points
 - Correctly creating the nodes: **25** Points
