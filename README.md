@@ -362,7 +362,7 @@ ros2 node info relay
 
 ## 10. Deliverables and Submission
 
-Students will maintain a private gitHub repository, cloning this repo and
+Students will maintain a private github repository, cloning this repo and
 sharing collaboration rights with the TA. In addition to the three
 deliverables described in this document, fill in the answers to the
 questions listed in **`SUBMISSION.md`**. Add is as a text file in your
