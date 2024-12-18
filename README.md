@@ -98,29 +98,7 @@ tab should look similar to to:
 
 
 ## 3. Launching the Simulator
-
-<!-- *xxx-ct the relationship to launching the simulator and tmux is not -->
-<!-- clear. Specifically, whether tmux is used in inside or outside of -->
-<!-- the container. I have removed the tmux instructions for -->
-<!-- now, since they make things less clear. If you would like to revisit -->
-<!-- them to aid students that would be fine. Right now it's about getting -->
-<!-- up and running.* -->
-
-<!-- 1. `tmux` is included in the container, so you can create multiple -->
-<!-- bash sessions in the same terminal.   -->
-
-<!--     - A quick reference on how to use tmux can be found -->
-<!-- 	[here](https://www.redhat.com/sysadmin/introduction-tmux-linux).   -->
-
-<!--     - A cheatsheet for the original tmux shortcut keys can be found -->
-<!--       [here](https://tmuxcheatsheet.com/). To know about how to change -->
-<!--       the configuration of tmux to make it more useable (for example, -->
-<!--       if you want to toggle the mouse mode on when you start a tmux -->
-<!--       bash session or change the shortcut keys), you can find a -->
-<!--       tutorial -->
-<!--       [here](https://www.hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/).  -->
-
-This step verifies the F1TENTH gym simulator has been installed
+ This step verifies the F1TENTH gym simulator has been installed
 correctly, for this lab it will not be used but it serves as
 verification point.
 
@@ -342,6 +320,8 @@ Example instruction:
 ```bash
 ros2 launch lab1_launch.py v:=2.0 d:=3.0 # sets v and d parameters 
 ```
+*For this lab, students must ensure the run command for the launch file 
+remains unchanged.*
 
 References to launch files may be found here:
 [https://docs.ros.org/en/foxy/Tutorials/Intermediate/Launch/Creating-Launch-Files.html] 
@@ -365,8 +345,8 @@ ros2 node info relay
 Students will maintain a private github repository, cloning this repo and
 sharing collaboration rights with the TA. In addition to the three
 deliverables described in this document, fill in the answers to the
-questions listed in **`SUBMISSION.md`**. Add is as a text file in your
-submission. 
+questions listed in **`SUBMISSION.md`** and provide a screenshot of the output 
+of the launch file running your nodes. Label the screenshot **`Output`**.
 
 Students will add the TA to their labs as a collaborator. The TA's
 gitHub: [https://github.com/Breanna-Geller]. 
@@ -380,10 +360,11 @@ If you need help, reference the following:
 
 - Correctly creating the package: **25** Points
 - Correctly creating the nodes: **25** Points
-- Correctly creating the launch file: **25** Points
+- Correctly creating the launch file: **20** Points
+- Screenshot of code execution: **5** Points
 - Written questions: **25** Points
 
-## Troubleshooting
+## Troubleshooting 
 
 ### Cannot use the container
 
@@ -404,3 +385,25 @@ docker attach f1tenth_lab1
 ### Exiting the container
 
 To exit the container hold down the control key and press the d key.
+<!---From Breanna: Must mention tmux as students within a docker container may 
+not be able to access the session without- need to utilize multiple 
+"terminals" in a session.--->
+### Utilizing Multiple Terminals in the Container
+`tmux` is included in the container, so you can create multiple
+ bash sessions in the same terminal. This allows students the ability 
+ to run multiple commands in the docker container- addressing the issue 
+ of not being able to run multiple commands within the docker container.
+
+- A quick reference on how to use tmux can be found 
+ 	[here](https://www.redhat.com/sysadmin/introduction-tmux-linux).   
+
+- A cheatsheet for the original tmux shortcut keys can be found 
+       [here](https://tmuxcheatsheet.com/). 
+
+- To know about how to change 
+       the configuration of tmux to make it more useable (for example, 
+       if you want to toggle the mouse mode on when you start a tmux 
+       bash session or change the shortcut keys), you can find a 
+       tutorial 
+       [here](https://www.hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/).  
+
