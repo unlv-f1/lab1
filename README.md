@@ -120,7 +120,16 @@ browser tab should look similar to:
 
 ![f1tenth gym success](img/gym-success.png)
 
-2. After verifying the simulator is running, stop the container by
+2. Test out driving in the simulator by running the following command 
+	in a new terminal:
+
+	```bash
+	root@16efddc49186:/sim_ws# ros2 run teleop_twist_keyboard teleop_twist_keyboard
+	``` 
+	The keys corresponding to vehicle controls are displayed in the terminal. To drive, leave this terminal
+	open.
+
+3. After verifying the simulator is running and the car can drive, stop the container by
    pressing CTRL-C (hold the control key and hit C) in the terminal
    you started it in.
    
