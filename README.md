@@ -299,7 +299,11 @@ gordon@f1sim:~/ws/ros_ws/src/lab1_pkg/lab1_pkg$ emacs -nw talker.py #vim/nano/em
 ## 7. Creating nodes with publishers and subscribers
 
 **Deliverable 2**: create two nodes in the package we just
-created. You can use either `Python` or `C++` for these nodes. 
+created. You can use either `Python` or `C++` for these nodes.
+
+Use the following resources for reference to guide your implementation:
+- [Understanding topics - Background](https://docs.ros.org/en/foxy/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html#background)
+- [Writing a simple publisher and subscriber (Python)](https://docs.ros.org/en/foxy/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Publisher-And-Subscriber.html)
 
 The first node will be named `talker.cpp` or `talker.py` and needs to
 meet these criteria: 
@@ -358,7 +362,7 @@ questions listed in **`SUBMISSION.md`** and provide a screenshot of the output
 of the launch file running your nodes. Label the screenshot **`Output`**.
 
 Students will add the TA to their labs as a collaborator. The TA's
-gitHub: [https://github.com/Breanna-Geller]. 
+gitHub: [https://github.com/ederic-oytas]. 
 
 If you need help, reference the following:
 [https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository] 
