@@ -361,8 +361,7 @@ deliverables described in this document, fill in the answers to the
 questions listed in **`SUBMISSION.md`** and provide a screenshot of the output 
 of the launch file running your nodes. Label the screenshot **`Output`**.
 
-Students will add the TA to their labs as a collaborator. The TA's
-gitHub: [https://github.com/ederic-oytas]. 
+Students will add the TA to their labs as a collaborator.
 
 If you need help, reference the following:
 [https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository] 
