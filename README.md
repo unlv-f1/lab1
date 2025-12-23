@@ -142,6 +142,14 @@ browser tab should look similar to:
 ## 4. Creating a workspace and bind mounting it into the Docker container
 
 1. Begin by cloning this repository into `~/lab1_ws`
+
+    ```bash
+	cd ~
+	git clone https://github.com/unlv-f1/lab1 lab1_ws
+	# To get the absolute path do:
+	realpath lab1_ws
+	```
+
 2. Collect your user id and group id with the `id` command by:
 
     ```bash
