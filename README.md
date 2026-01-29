@@ -19,7 +19,8 @@ that students pursue a native installation from the instructions found
 [here](https://github.com/f1tenth/f1tenth_gym_ros). 
 
 These instructions will install the F1TENTH Gym and create a workspace
-for this lab in separate locations.
+for this lab in separate locations. Below is the local file structure the
+instructions assume **outside of the container**.
 
 	${HOME}/
 	  |
@@ -30,6 +31,27 @@ for this lab in separate locations.
 	  |          `-- f1tenth_gym_ros/        -- The gym
 	  |
 	  `-- lab1_ws/                           -- This lab
+
+Below is the file expected file structure inside the container. Note that this
+is in `/`, the filesystem root, so you'll see other system files within this
+folder.
+
+```
+/ (Filesystem root)
+
+    ... (Other system files) ...
+    
+    lab1_ws/
+        ...
+    
+    ... (Other system files) ...
+
+    sim_ws/
+        src/
+            f1tenth_gym_ros/
+
+    ... (Other system files) ...
+```
 	  
 Preparing the gym environment ensures the Docker resources and other
 tools are properly installed to prepare the first lab. Keep this
@@ -231,8 +253,11 @@ you must always source your underlay:
 source /opt/ros/foxy/setup.bash
 ```
 
-Next, navigate to your `src` folder within your `lab1_ws` workspace directory
-(wherever it is.)
+Next, navigate to `/lab1_ws/src`:
+
+```bash
+cd /lab1_ws/src
+```
 
 Create a ROS 2 Python package named `lab1_pkg` using:
 
@@ -245,8 +270,12 @@ In your directory, you should see that it has created a new folder called
 
 Next, we will practice building our package.
 
-Navigate back to your workspace folder (`lab1_ws`). **The rest of the**
+Change your current directory back to your workspace folder (`/lab1_ws`). **The rest of the**
 **commands in this section will be in this folder.**
+
+```bash
+cd /lab1_ws
+```
 
 Then build all packages in your workspace using:
 
@@ -353,20 +382,20 @@ available in this repository.
 ## 7. Creating nodes with publishers and subscribers
 
 For this section, we will create two nodes `talker_node` and `relay_node`.
-Navigate to your ROS 2 package folder. You should see the following package
+Change your current directory to `/lab1_ws/src/lab1_pkg`. You should see the following package
 structure:
 
 ```
-lab1_pkg/
-	lab1_pkg/
+/lab1_ws/src/lab1_pkg/
+    lab1_pkg/
     __init__.py
-	test/
+    test/
     ...
-	resource/
+    resource/
     ...
-	package.xml
-	setup.cfg
-	setup.py
+    package.xml
+    setup.cfg
+    setup.py
 ```
 
 For this section, we will create two nodes `talker_node` and `relay_node`.
@@ -386,7 +415,7 @@ of your choice **outside** the container.) The inner `lab1_pkg/` directory
 should look like this:
 
 ```
-lab1_pkg/
+/lab1_ws/src/lab1_pkg/lab1_pkg/
   __init__.py
   talker.py
 ```
@@ -489,11 +518,14 @@ entry_points={
 ```
 
 Once you are finished, since you changed your package code, you must rebuild
-your package. **Navigate back to your workspace folder `lab1_ws`** and do:
+your package. Run:
 
 ```bash
+cd /lab1_ws
 colcon build
 ```
+
+> You should always build in your workspace folder, not anywhere else!
 
 Then, as always after a build, resource your overlay:
 
@@ -507,7 +539,7 @@ Now, our talker entry point should now be findable. To test it now, use:
 ros2 run lab1_pkg talker --ros-args -p my_parameter:=15.0
 ```
 
-This runs a new node called `talker_node`
+This runs a new node called `talker_node`.
 
 Once you do this, it will run a new node called `talker_node` and output the
 following to the console.
@@ -562,8 +594,8 @@ drive:
 ---
 ```
 
-Try experimenting with changing the value of `my_parameter` and see what value
-is given in `/my_topic`.
+Try experimenting with changing the value of `my_parameter` in your `ros2 run` 
+commmand and see what value is given in `/my_topic`.
 
 ### Your Talker Node Tasks
 
@@ -591,7 +623,7 @@ Once you have finished these tasks, you may move to the next part.
 Let's move onto `relay_node`. In the inner lab1_pkg/ directory, create a new file named *relay.py*. The inner `lab1_pkg/` directory should now look like this:
 
 ```
-lab1_pkg/
+/lab1_ws/src/lab1_pkg/lab1_pkg/
   __init__.py
 	relay.py
   talker.py
@@ -651,10 +683,10 @@ look like this:
 
 ```python
 entry_points={
-		"console_scripts": [
-				"talker = lab1_pkg.talker:main",
-				"relay = lab1_pkg.relay:main",
-		],
+    "console_scripts": [
+        "talker = lab1_pkg.talker:main",
+        "relay = lab1_pkg.relay:main",
+    ],
 },
 ```
 
@@ -666,7 +698,7 @@ source install/local_setup.bash
 ```
 
 Then, to test it, we need both nodes running at the same time. In one terminal,
-run the following (in `lab1_ws`):
+run the following (in `/lab1_ws`):
 
 ```bash
 source /opt/ros/foxy/setup.bash
@@ -674,7 +706,7 @@ source install/local_setup.bash
 ros2 run lab1_pkg talker --ros-args -p v:=2.0 -p d:=3.0
 ```
 
-Then, in another terminal, run (in `lab1_ws`):
+Then, in another terminal, run (in `/lab1_ws`):
 
 ```bash
 source /opt/ros/foxy/setup.bash
@@ -715,12 +747,12 @@ topic.
 > [https://docs.ros.org/en/foxy/Tutorials/Intermediate/Launch/Creating-Launch-Files.html] 
 
 Finally, we will create a launch file named `lab1_launch.py`. Navigate to your
-package root (the outer `lab1_pkg/` folder). Create a new directory called
+package root `/lab1_ws/src/lab1_pkg/`. Create a new directory called
 `launch/` and create a new file in it called `lab1_launch.py`. Your directory
 should look something like this:
 
 ```
-lab1_pkg/
+/lab1_ws/src/lab1_pkg/
 	lab1_pkg/
     __init__.py
 		relay.py
@@ -820,8 +852,15 @@ Some questions to consider:
 
 ## 9. ROS 2 commands
 
-After you've finished all the deliverables, launch the two nodes and
-test out these ROS 2 commands: 
+After you've finished all the deliverables, launch a new terminal and source
+your underlay:
+
+```bash
+source /opt/ros/foxy/setup.bash
+```
+
+Then, test out these ROS 2 commands (you may use these anywhere in your
+filesystem):
 
 ```bash
 ros2 topic list
